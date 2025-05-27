@@ -1,38 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   parser_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bruno <bruno@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/23 10:17:16 by bruno             #+#    #+#             */
+/*   Created: 2025/05/23 15:05:01 by bruno             #+#    #+#             */
 /*   Updated: 2025/05/27 11:14:38 by bruno            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int ft_printf(const char *format, ...)
+static t_flags init_flags(void)
 {
-    va_list args;
-    int total;
+    t_flags flags;
 
-    total = 0;
-    va_start(args, format);
-    while (*format)
-    {
-        if (*format == '%')
-        {
-            format++;
-            total += dispatch_handler(&format, args);
-        }
-        else
-        {
-            write(1, format, 1);
-            total++;
-            format++;
-        }
-    }
-    va_end(args);
-    return (total);
+    flags.minus = 0;
+    flags.zero  0;
+    flags.width = 0;
+    flags.precision = 0;
+    flags.has_precision = 0;
+    return flags;
 }
+static int parse_number(const char **format)
+{
+    int num;
+
+    num = 0;
+    while (**fornmat >= '0' && *fornmat <= '9')
+    {
+        num = num * 10 + (**format - '0');
+        (*format)++;
+    }
+    return (num);
+}
+

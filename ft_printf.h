@@ -6,7 +6,7 @@
 /*   By: bruno <bruno@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 10:17:24 by bruno             #+#    #+#             */
-/*   Updated: 2025/05/27 15:15:34 by bruno            ###   ########.fr       */
+/*   Updated: 2025/05/28 08:13:56 by bruno            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int handle_hex(unsigned int n, t_flags flags, int uppercase);
 int handle_percent(t_flags flags);
 
 // utils
-int     dispatch_handler(const char **format, va_list args)
+int     dispatch_handler(const char **format, va_list args);
 t_flags parse_flags(const char **format);
 t_flags init_flags(void);
 

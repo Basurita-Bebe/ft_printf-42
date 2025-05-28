@@ -6,13 +6,13 @@
 /*   By: bruno <bruno@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 15:32:23 by bruno             #+#    #+#             */
-/*   Updated: 2025/05/27 15:33:39 by bruno            ###   ########.fr       */
+/*   Updated: 2025/05/28 08:17:11 by bruno            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-int handle_percent(t_flags flgas)
+int handle_percent(t_flags flags)
 {
     (void)flags;
     write(1, "%",1);

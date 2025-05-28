@@ -6,11 +6,12 @@
 /*   By: bruno <bruno@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 15:44:54 by bruno             #+#    #+#             */
-/*   Updated: 2025/05/27 15:48:54 by bruno            ###   ########.fr       */
+/*   Updated: 2025/05/28 08:22:51 by bruno            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
+#include "../../../Rank-00/Libft/libft.h"
 
 int handle_hex(unsigned int n, t_flags flags, int uppercase)
 {

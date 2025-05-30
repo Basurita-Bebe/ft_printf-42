@@ -6,7 +6,7 @@
 /*   By: bruno <bruno@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 10:17:24 by bruno             #+#    #+#             */
-/*   Updated: 2025/05/30 11:30:03 by bbeceiro         ###   ########.fr       */
+/*   Updated: 2025/05/30 15:13:15 by bruno            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef enum e_error
 	PARSE_ERROR = -42,
 }	t_error;
 
+// Different bases
 typedef enum e_base
 {
 	BASE_2 = 2,
@@ -39,6 +40,13 @@ typedef enum e_base
 	BASE_10 = 10,
 	BASE_16 = 16
 }	t_base;
+
+// Padding struct
+typedef struct s_pad
+{
+	int	zeros;
+	int	spaces;
+}	t_pad;
 
 typedef struct s_format
 {
@@ -52,7 +60,7 @@ typedef struct s_format
 	int		precision_v;
 	int		padd_spaces;
 	int		upper_case;
-	e_base	base;
+	t_base	base;
 }	t_format;
 
 typedef struct s_data

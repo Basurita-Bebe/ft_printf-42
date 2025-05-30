@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   format_parser.c                                    :+:      :+:    :+:   */
+/*   format_parser_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bruno <bruno@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/29 09:35:29 by bruno             #+#    #+#             */
-/*   Updated: 2025/05/30 14:56:42 by bruno            ###   ########.fr       */
+/*   Created: 2025/05/30 14:57:51 by bruno             #+#    #+#             */
+/*   Updated: 2025/05/30 15:06:57 by bruno            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	parse_format(t_data *data)
 {
 	ft_memset(&data->format, 0, sizeof(t_format));
 	data->format.precision_v = -1;
+	parse_flags(data);
 	get_value(data, &data->format.width_v);
 	if (*data->fmt_str == '.' && (++data->fmt_str))
 		get_value(data, &data->format.precision_v);

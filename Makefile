@@ -6,7 +6,7 @@
 #    By: bruno <bruno@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/23 10:17:28 by bruno             #+#    #+#              #
-#    Updated: 2025/05/30 10:15:10 by bruno            ###   ########.fr        #
+#    Updated: 2025/05/30 15:11:56 by bruno            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,17 +35,18 @@ MANDATORY_SRC = \
 # === Bonus Files ===
 BONUS_SRCS = \
 	utils/parse_flags_bonus.c \
+	utils/format_parser_bonus.c
 
 # === Object Files ===
 MANDATORY_OBJS = $(MANDATORY_SRC:.c=.o)
 BONUS_OBJS = $(BONUS_SRCS:.c=.o)
 
 # === Build Selection ===
-OBJS = $(MANDATORY_OBJS)
-
 ifeq ($(MAKECMDGOALS), bonus)
-	OBJS +=  $(BONUS_OBJS)
+	OBJS = $(filter-out utils/format_parser.o, $(MANDATORY_OBJS)) $(BONUS_OBJS)
 	CFLAGS += -DBONUS
+else
+	OBJS = $(MANDATORY_OBJS)
 endif
 
 # ===== Rules =====
@@ -57,7 +58,7 @@ $(NAME): $(LIBFT) $(OBJS)
 $(LIBFT):
 	@make -C $(LIBFT_DIR)
 
-bonus: $(NAME)
+bonus: fclean $(NAME)
 
 clean:
 	rm -f $(MANDATORY_OBJS) $(BONUS_OBJS)

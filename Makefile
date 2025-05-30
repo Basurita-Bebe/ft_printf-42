@@ -6,7 +6,7 @@
 #    By: bruno <bruno@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/23 10:17:28 by bruno             #+#    #+#              #
-#    Updated: 2025/05/28 10:26:09 by bruno            ###   ########.fr        #
+#    Updated: 2025/05/30 10:15:10 by bruno            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,48 +19,45 @@ LIBFT_DIR = ../../Rank-00/Libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
 # === Mandatory Files ===
-MANDATORY_SRC = ft_printf.c \
-	utils/dispatch_handler.c \
-	handlers/handle_char.c \
-	handlers/handle_string.c \
-	handlers/handle_percent.c \
-	handlers/handle_int.c \
-	handlers/handle_unsigned.c \
-	handlers/handle_hex.c \
-	handlers/handle_pointer.c 
+MANDATORY_SRC = \
+	ft_printf.c \
+	format_render.c \
+	buffer.c \
+	renders/render_char.c \
+	renders/render_str.c \
+	renders/render_numbers.c \
+	utils/format_parser.c \
+	utils/get_number_prefix.c \
+	utils/get_value.c \
+	utils/init_format.c \
+	utils/is_in.c
 
 # === Bonus Files ===
 BONUS_SRCS = \
-	parser_bonus.c \
-	utils/init_flags.c \
-	utils/parse_flags.c
+	utils/parse_flags_bonus.c \
 
 # === Object Files ===
 MANDATORY_OBJS = $(MANDATORY_SRC:.c=.o)
 BONUS_OBJS = $(BONUS_SRCS:.c=.o)
 
-# === Det. Wich Objects To Build ===
+# === Build Selection ===
+OBJS = $(MANDATORY_OBJS)
+
 ifeq ($(MAKECMDGOALS), bonus)
-	OBJS = $(MANDATORY_OBJS) $(BONUS_OBJS)
+	OBJS +=  $(BONUS_OBJS)
 	CFLAGS += -DBONUS
-else
-	OBJS = $(MANDATORY_OBJS)
 endif
 
 # ===== Rules =====
-all: $(LIBFT) $(NAME)
+all: $(NAME)
 
-bonus: $(LIBFT)
-	@make OBJS="$(MANDATORY_OBJS) $(BONUS_OBJS)" CFLAGS="$(CFLAGS) -DBONUS" $(NAME)
-
-$(NAME): $(OBJS)
+$(NAME): $(LIBFT) $(OBJS)
 	ar rcs $(NAME) $(OBJS)
 
 $(LIBFT):
 	@make -C $(LIBFT_DIR)
 
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+bonus: $(NAME)
 
 clean:
 	rm -f $(MANDATORY_OBJS) $(BONUS_OBJS)
@@ -71,6 +68,9 @@ fclean: clean
 	make -C $(LIBFT_DIR) fclean
 
 re: fclean all
+
+%.o: %.c
+	$(CC) $(CFLAGS) -I. -I$(LIBFT_DIR) -c $< -o $@
 
 .PHONY: all bonus clean fclean re
 

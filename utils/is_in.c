@@ -1,20 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_percent.c                                   :+:      :+:    :+:   */
+/*   is_in.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bruno <bruno@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/27 15:32:23 by bruno             #+#    #+#             */
-/*   Updated: 2025/05/28 08:17:11 by bruno            ###   ########.fr       */
+/*   Created: 2025/05/29 09:52:55 by bruno             #+#    #+#             */
+/*   Updated: 2025/05/29 11:42:16 by bruno            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-int handle_percent(t_flags flags)
+int	is_in(const char *fmt_str, char c)
 {
-    (void)flags;
-    write(1, "%",1);
-    return (1);
+	if (fmt_str == NULL)
+		return (-1);
+	while (*fmt_str)
+	{
+		if (*fmt_str == c)
+			return (0);
+		++fmt_str;
+	}
+	return (-1);
 }

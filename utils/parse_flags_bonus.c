@@ -1,30 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_int.c                                       :+:      :+:    :+:   */
+/*   parse_flags.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bruno <bruno@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/27 15:34:36 by bruno             #+#    #+#             */
-/*   Updated: 2025/05/28 08:20:12 by bruno            ###   ########.fr       */
+/*   Created: 2025/05/29 09:46:28 by bruno             #+#    #+#             */
+/*   Updated: 2025/05/29 11:42:50 by bruno            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
-#include "../../../Rank-00/Libft/libft.h"
 
-int handle_int(int n, t_flags flags)
+void	parse_flags(t_data *data)
 {
-    char    *str;
-    int     count;
-
-    (void)flags;
-    count = 0;
-    str = ft_itoa(n);
-    if (!str)
-        return (0);
-    while (str[count])
-        write(1, &str[count++], 1);
-    free(str);
-    return (count);
+	char	flag;
+	
+	while (is_in(FLAGS, *data->fmt_str))
+	{
+		flag = *data->fmt_str;
+		if (flag == '-')
+			data->format.minus = 1;
+		else if (flag == '+')
+			data->format.plus = 1;
+		else if	(flag == ' ')
+			data->format.space = 1;
+		else if (flag == '0')
+			data->format.zero = 1;
+		else if (flag == '#')
+			data->format.hash = 1;
+		++data->fmt_str;
+	}
 }

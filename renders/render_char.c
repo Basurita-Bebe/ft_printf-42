@@ -1,35 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_hex.c                                       :+:      :+:    :+:   */
+/*   render_char.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bruno <bruno@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/27 15:44:54 by bruno             #+#    #+#             */
-/*   Updated: 2025/05/28 08:22:51 by bruno            ###   ########.fr       */
+/*   Created: 2025/05/23 16:13:29 by bruno             #+#    #+#             */
+/*   Updated: 2025/05/29 13:03:04 by bruno            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
-#include "../../../Rank-00/Libft/libft.h"
 
-int handle_hex(unsigned int n, t_flags flags, int uppercase)
+void    print_char(t_data *data, int c)
 {
-    char    *str;
-    int     count;
-    char    *base;
+    int width;
 
-    count = 0;
-    (void)flags;
-    if (uppercase)
-        base = "0123456789ABCDEF";
+    width = data->format.width_v;
+    if (width > 1)
+    {
+        if (data->format.minus)
+        {
+            char_pad_inbuff((char)c, 1, data);
+            char_pad_inbuff(' ', width - 1, data);
+        }
+        else
+        {
+            char_pad_inbuff(' ', width - 1, data);
+            char_pad_inbuff((char)c, 1, data);
+        }
+    }
     else
-        base = "0123456789abcdef";
-    str = ft_utoa_base(n, base);
-    if (!str)
-        return (0);
-    while (str[count])
-        write(1, &str[count++], 1);
-    free(str);
-    return (count);
+        char_pad_inbuff((char)c, 1, data);
 }

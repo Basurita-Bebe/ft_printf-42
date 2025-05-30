@@ -6,7 +6,7 @@
 /*   By: bruno <bruno@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 12:28:45 by bruno             #+#    #+#             */
-/*   Updated: 2025/05/30 10:01:31 by bruno            ###   ########.fr       */
+/*   Updated: 2025/05/30 10:58:13 by bruno            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	render_number_types(t_data *data)
 	else if (data->format.specifier == 'u'
 		|| data->format.specifier == 'x'
 		|| data->format.specifier == 'X')
-		value = (unsigned int)va_arg(data->ap, void *);
+		value = (unsigned int)va_arg(data->ap, unsigned int);
 	else if (data->format.specifier == 'p')
 		value = (unsigned long long)(uintptr_t)va_arg(data->ap, void *);
 	print_numbers(data, value);

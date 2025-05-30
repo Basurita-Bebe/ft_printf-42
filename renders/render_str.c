@@ -6,7 +6,7 @@
 /*   By: bruno <bruno@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 13:24:15 by bruno             #+#    #+#             */
-/*   Updated: 2025/05/29 15:52:11 by bruno            ###   ########.fr       */
+/*   Updated: 2025/05/30 11:34:03 by bbeceiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	set_str_padd(t_data *data, char *str)
 {
 	int	len;
 	int	visible_len;
-	
+
 	len = ft_strlen(str);
 	if (data->format.precision_v >= 0 && data->format.precision_v < len)
 		visible_len = data->format.precision_v;
